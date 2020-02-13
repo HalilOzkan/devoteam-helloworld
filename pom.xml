@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.devoteam.nl</groupId>
+    <artifactId>devoteam-helloworld</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>Hello World Microservice Sample</name>
+    <description>The goal for this is to find a smaller runtime/compiled framework or language that is optimized for
+        running in a container environment.
+    </description>
+    <url>https://nl.devoteam.com</url>
+
+    <organization>
+        <name>Devoteam Netherlands</name>
+        <url>https://nl.devoteam.com</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Halil ÖZKAN</name>
+            <id>HalilOzkan</id>
+            <email>halil.ozkan@devoteam.com</email>
+            <url>https://github.com/HalilOzkan</url>
+            <organization>Devoteam Netherlands</organization>
+            <organizationUrl>https://nl.devoteam.com</organizationUrl>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>+1</timezone>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/HalilOzkan/devoteam-helloworld</url>
+        <connection>scm:git:https://github.com/HalilOzkan/devoteam-helloworld.git</connection>
+        <developerConnection>scm:git:https://github.com/HalilOzkan/devoteam-helloworld.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/HalilOzkan/devoteam-helloworld/issues</url>
+    </issueManagement>
+
+    <distributionManagement>
+        <site>
+            <id>site</id>
+            <url>scm:git:https://github.com/HalilOzkan/devoteam-helloworld.git</url>
+        </site>
+    </distributionManagement>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <version.vertx>3.8.5</version.vertx>
+        <version.maven-project-info-reports-plugin>3.0.0</version.maven-project-info-reports-plugin>
+        <versions-maven-plugin>2.7</versions-maven-plugin>
+        <version.maven-site-plugin>3.8.2</version.maven-site-plugin>
+        <version.maven-release-plugin>3.0.0-M1</version.maven-release-plugin>
+        <version.maven-enforcer-plugin>3.0.0-M3</version.maven-enforcer-plugin>
+        <version.maven-resources-plugin>3.1.0</version.maven-resources-plugin>
+        <version.maven-dependency-plugin>3.1.1</version.maven-dependency-plugin>
+        <version.maven-shade-plugin>3.2.2</version.maven-shade-plugin>
+        <version.maven-compiler-plugin>3.8.1</version.maven-compiler-plugin>
+        <version.clean.plugin>3.1.0</version.clean.plugin>
+        <version.deploy.plugin>3.0.0-M1</version.deploy.plugin>
+        <version.install.plugin>3.0.0-M1</version.install.plugin>
+        <version.maven-jar-plugin>3.2.0</version.maven-jar-plugin>
+        <version.surefire.plugin>3.0.0-M4</version.surefire.plugin>
+        <version.assembly.plugin>3.2.0</version.assembly.plugin>
+        <version.maven-source-plugin>3.2.1</version.maven-source-plugin>
+        <version.maven-javadoc-plugin>3.1.1</version.maven-javadoc-plugin>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.vertx</groupId>
+                <artifactId>vertx-stack-depchain</artifactId>
+                <version>${version.vertx}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-web</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${version.maven-dependency-plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>${version.maven-release-plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${version.assembly.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${version.maven-site-plugin}</version>
+                    <configuration>
+                        <skipDeploy>true</skipDeploy>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${version.surefire.plugin}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>${version.clean.plugin}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${version.maven-compiler-plugin}</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>${version.maven-shade-plugin}</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <manifestEntries>
+                                        <Main-Class>io.vertx.core.Launcher</Main-Class>
+                                        <Main-Verticle>com.devoteam.nl.helloworld.MainVerticle</Main-Verticle>
+                                    </manifestEntries>
+                                </transformer>
+                            </transformers>
+                            <artifactSet/>
+                            <outputFile>${project.build.directory}/${project.artifactId}-${project.version}-fat.jar
+                            </outputFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${version.maven-resources-plugin}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>${version.maven-release-plugin}</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <releaseProfiles>release</releaseProfiles>
+                    <goals>deploy</goals>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>${version.maven-enforcer-plugin}</version>
+                <executions>
+                    <execution>
+                        <id>enforce-maven</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>3.3.9</version>
+                                </requireMavenVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>enforce-java</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>1.8.0</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>${version.install.plugin}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${version.deploy.plugin}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${version.maven-jar-plugin}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${version.maven-source-plugin}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${version.maven-javadoc-plugin}</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${version.maven-project-info-reports-plugin}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>${versions-maven-plugin}</version>
+            </plugin>
+        </plugins>
+
+    </build>
+
+    <reporting>
+
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>analyze-report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>${versions-maven-plugin}</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>dependency-updates-report</report>
+                            <report>plugin-updates-report</report>
+                            <report>property-updates-report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+
+        </plugins>
+
+    </reporting>
+
+</project>
